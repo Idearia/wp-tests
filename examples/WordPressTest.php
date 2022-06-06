@@ -1,7 +1,7 @@
 <?php
-namespace Idearia\Tests;
+namespace Idearia\WpTests;
 
-use Idearia\Tests\Lib\WordPressTestCase;
+use Idearia\WpTests\WordPressTestCase;
 
 /**
  * Test the creation and deletion of a WordPress post.

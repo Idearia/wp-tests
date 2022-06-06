@@ -1,14 +1,15 @@
 <?php
-namespace Idearia\Tests\Lib;
+namespace Idearia\WpTests;
 
 /**
- * Wrapper of PHPUnit\Framework\TestCase which loads WordPress
+ * Wrapper of PHPUnit's TestCase that loads WordPress
  * and implements a simple logger.
  *
  * WordPress will be looked for in the path given in the
- * 'wordPressPath' environment variable.
+ * 'wordPressPath' environment variable. If no value is set,
+ * we will infer it.
  *
- * For multisite installations, you can pptionally select a
+ * For multisite installations, you can optionally select a
  * specific site via the 'blogId' environment variable.
  */
 class WordPressTestCase extends \PHPUnit\Framework\TestCase
@@ -20,6 +21,7 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 	 */
 	public static function setUpBeforeClass(): void
 	{
+		$wordPressPath = $_ENV['wordPressPath'] ?? '../../../../../../';
 		static::loadWordPress( $_ENV['wordPressPath'], (int)$_ENV['blogId'] );
 	}
 

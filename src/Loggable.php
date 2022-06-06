@@ -1,5 +1,5 @@
 <?php
-namespace Idearia\Tests\Lib;
+namespace Idearia\WpTests;
 
 /**
  * Simple logger for PHPUnit tests.
