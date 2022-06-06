@@ -43,6 +43,6 @@ For example:
 
 ```xml
 <php>
-    <env name="wordPressPath" value="path/to/wordpress/wp-load.php"/>
+    <env name="wordPressPath" value="/path/to/wordpress/wp-load.php"/>
 </php>
 ````

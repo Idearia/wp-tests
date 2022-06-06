@@ -22,7 +22,7 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 	public static function setUpBeforeClass(): void
 	{
 		$wordPressPath = $_ENV['wordPressPath'] ?? '../../../../../../';
-		static::loadWordPress( $_ENV['wordPressPath'], (int)$_ENV['blogId'] );
+		static::loadWordPress( $wordPressPath, (int)$_ENV['blogId'] );
 	}
 
 	/**

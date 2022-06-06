@@ -1,0 +1,5 @@
+# Make sure to use https://github.com/szepeviktor/phpstan-wordpress
+parameters:
+  level: 0
+  paths:
+    - src
