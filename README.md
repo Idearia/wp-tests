@@ -14,4 +14,12 @@ A simple class to use PHPUnit tests in WordPress.
         ]
     },
     ```
-1. Create some tests, based on either SimpleTest.php or WordPressTest.php, and run them with `composer run test`.
+1. Create some tests, based on either *SimpleTest.php* or *WordPressTest.php*, and run them with `composer run test`.
+
+# Logging
+
+The tests implement a simple logger class:
+
+- To log a messag to file, call `self::log( $message )` within the test class.
+- The file will be named after the test class, and placed in the logs subfolder.
+- To customize the filename, filepath or choose a different stream, see the class documentation.

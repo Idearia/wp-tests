@@ -2,7 +2,6 @@
 namespace Idearia\Tests\Lib;
 
 /**
-**
  * Simple logger for PHPUnit tests.
  *
  * Features:
