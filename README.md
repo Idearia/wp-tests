@@ -1,4 +1,4 @@
-A simple class to do PHPUnit tests in WordPress.
+Defines the class `WordPressTestCase` to do PHPUnit tests in WordPress, with logging support.
 
 # Usage
 
@@ -17,7 +17,7 @@ In *examples/phpunit.example.xml* you can find an example of a PHPUnit configura
 
 # Logging
 
-The tests implement a simple logger class:
+The class `WordPressTestCase` implement a simple logger trait:
 
 - To log a messag to file, call `self::log( $message )` within the test class.
 - The file will be named after the test class, and placed in the subfolder *tests/logs*. **Important**: make sure this folder exists if you want to use the logger!
@@ -26,7 +26,8 @@ The tests implement a simple logger class:
 
 # Multisite support
 
-On a WordPress multisite network, the tests will be run on the main site/blog. You can choose to test against a different site/blog by setting the `blogId` environment variable.
+On a WordPress multisite network, the tests will be run on the main site/blog.
+You can choose to test against a different site/blog by setting the `blogId` environment variable.
 
 For example, to set the environment variable in *phpunit.xml*:
 
@@ -64,9 +65,10 @@ An equivalent but faster way: add this snippet to your composer.json and run `co
 }
 ```
 
-To ass arguments to phpunit, use the notation `composer run test -- arguments`.
+To èass arguments to phpunit, use the notation `composer run test -- arguments`.
 
 # To do
 
 - Add logging to example class
 - Make logsPath relative to where phpunit.xml is
+- Make wordPressPath relative to where phpunit.xml is
