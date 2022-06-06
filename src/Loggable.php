@@ -36,7 +36,7 @@ trait Loggable
 		return
 			dirname( __FILE__ )
 			. DIRECTORY_SEPARATOR
-			. ( $_ENV['logsPath'] ?? '../logs' )
+			. ( $_ENV['logsPath'] ?? '../../../../tests/logs' )
 			. DIRECTORY_SEPARATOR
 			. (new \ReflectionClass( static::class ))->getShortName()
 			. '.log';
