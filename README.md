@@ -6,11 +6,14 @@ A simple class to do PHPUnit tests in WordPress.
 1. Create a test by extending `Idearia\WpTests\WordPressTestCase`.
 1. Launch `vendor/bin/phpunit` to run your tests.
 
-# Example test
+# Example class
 
-You can find a complete test example in ./examples/WordPressTest.php.
-
+You can find an example of a test class in *examples/WordPressTest.php*.
 In this test, we create, fetch and delete a WordPress post.
+
+# Example phpunit.xml
+
+In *examples/phpunit.example.xml* you can find an example of a PHPUnit configuration file containing all the possible configurations of wp-tests.
 
 # Logging
 
@@ -65,4 +68,5 @@ To ass arguments to phpunit, use the notation `composer run test -- arguments`.
 
 # To do
 
-- Add logging to example
+- Add logging to example class
+- Make logsPath relative to where phpunit.xml is

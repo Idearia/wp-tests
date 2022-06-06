@@ -7,6 +7,7 @@
   </testsuites>
   <php>
     <env name="wordPressPath" value="../../../../../../"/>
+    <env name="logsPath" value="tests/logs"/>
     <env name="blogId" value="20"/>
   </php>
 </phpunit>
