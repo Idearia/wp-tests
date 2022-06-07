@@ -45,7 +45,7 @@ To set `wordPressPath` in *phpunit.xml*:
 
 ```xml
 <php>
-    <env name="wordPressPath" value="/path/to/wordpress/wp-load.php"/>
+    <env name="wordPressPath" value="/path/to/wordpress/"/>
 </php>
 ```
 
@@ -58,7 +58,7 @@ To set `logsPath` in *phpunit.xml*:
 
 ```xml
 <php>
-    <env name="logsPath" value="/path/to/wordpress/wp-load.php"/>
+    <env name="logsPath" value="./tests/logs"/>
 </php>
 ```
 
