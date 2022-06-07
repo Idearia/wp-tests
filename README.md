@@ -12,16 +12,16 @@ In *examples/WordPressTest.php* you can find an example of a test which implemen
 
 # Example phpunit.xml
 
-In *examples/phpunit.example.xml* you can find an example of a PHPUnit configuration file with all the avilable options.
+In *examples/phpunit.example.xml* you can find an example of a PHPUnit configuration file with all the available options.
 
 # Logging
 
-The class `WordPressTestCase` implement a simple logger trait:
+The class `WordPressTestCase` implements a simple logging trait:
 
 - To log a messag to file, call `self::log( $message )`.
-- The file will be named after the test class and placed in the subfolder *tests/logs*. **Important**: if you use the logger, make sure this folder exists!
-- Customize the folder with the `logsPath` environment variable (see below).
-- You can also customize the filename, or even choose a different stream. For these advanced uses, see the class documentation.
+- The file will be named after the test class and placed in the subfolder *tests/logs*.
+- Customize the subfolder with the `logsPath` environment variable (see below).
+- You can also customize the filename and, in general, the output stream: for these advanced uses, see the `Loggable` trait's documentation.
 
 # Multisite support
 
