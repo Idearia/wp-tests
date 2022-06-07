@@ -8,20 +8,19 @@ Defines the class `WordPressTestCase` to do PHPUnit tests in WordPress, with log
 
 # Example class
 
-You can find an example of a test class in *examples/WordPressTest.php*.
-In this test, we create, fetch and delete a WordPress post.
+In *examples/WordPressTest.php* you can find an example of a test which implements `WordPressTestCase`. In this test, we create, fetch and delete a WordPress post.
 
 # Example phpunit.xml
 
-In *examples/phpunit.example.xml* you can find an example of a PHPUnit configuration file containing all the possible configurations of wp-tests.
+In *examples/phpunit.example.xml* you can find an example of a PHPUnit configuration file with all the avilable options.
 
 # Logging
 
 The class `WordPressTestCase` implement a simple logger trait:
 
-- To log a messag to file, call `self::log( $message )` within the test class.
-- The file will be named after the test class, and placed in the subfolder *tests/logs*. **Important**: make sure this folder exists if you want to use the logger!
-- Customize the folder with the `logsPath` environment variable, for example in your *phpunit.xml* .
+- To log a messag to file, call `self::log( $message )`.
+- The file will be named after the test class and placed in the subfolder *tests/logs*. **Important**: if you use the logger, make sure this folder exists!
+- Customize the folder with the `logsPath` environment variable (see below).
 - You can also customize the filename, or even choose a different stream. For these advanced uses, see the class documentation.
 
 # Multisite support
@@ -29,7 +28,7 @@ The class `WordPressTestCase` implement a simple logger trait:
 On a WordPress multisite network, the tests will be run on the main site/blog.
 You can choose to test against a different site/blog by setting the `blogId` environment variable.
 
-For example, to set the environment variable in *phpunit.xml*:
+To set `blogId` in *phpunit.xml*:
 
 ```xml
 <php>
@@ -40,10 +39,9 @@ For example, to set the environment variable in *phpunit.xml*:
 # Custom WordPress path
 
 If your WordPress installation is non-standard, you can specify a custom WordPress path by setting the `wordPressPath` environment variable.
+If you use a relative path, please note that the reference folder will be *vendor/idearia/wp-tests*.
 
-If you choose to use a relative path, the reference folder will be *vendor/idearia/wp-tests*.
-
-For example, to set the environment variable in *phpunit.xml*:
+To set `wordPressPath` in *phpunit.xml*:
 
 ```xml
 <php>
@@ -51,13 +49,26 @@ For example, to set the environment variable in *phpunit.xml*:
 </php>
 ```
 
+# Custom folder for the logs
+
+By default, the log files will be placed in the *tests/logs* folder; set the `logsPath` environment variable to use a different folder.
+If you use a relative path, please note that the reference folder will be *vendor/idearia/wp-tests*.
+
+To set `logsPath` in *phpunit.xml*:
+
+```xml
+<php>
+    <env name="logsPath" value="/path/to/wordpress/wp-load.php"/>
+</php>
+```
+
 # Nice output
 
-To run the tests and have the results printed in a nicer way, run `vendor/bin/phpunit --testdox`.
+Run `vendor/bin/phpunit --testdox` to print test results in a nicer way.
 
-An equivalent but faster way: add this snippet to your composer.json and run `composer run test`:
+Equivalently, you coud add this snippet to composer.json and simply run `composer run test`:
 
-```
+```json
 "scripts": {
     "test": [
         "phpunit --testdox"
@@ -65,7 +76,7 @@ An equivalent but faster way: add this snippet to your composer.json and run `co
 }
 ```
 
-To èass arguments to phpunit, use the notation `composer run test -- arguments`.
+To pass arguments to phpunit, use the notation `composer run test -- arguments`.
 
 # To do
 
