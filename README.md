@@ -8,11 +8,11 @@ Defines the class `WordPressTestCase` to do PHPUnit tests in WordPress, with log
 
 # Example class
 
-In *examples/WordPressTest.php* you can find an example of a test which implements `WordPressTestCase`. In this test, we create, fetch and delete a WordPress post.
+In [examples/WordPressTest.php](examples/WordPressTest.php) you can find an example of a test which implements `WordPressTestCase`. In this test, we create, fetch and delete a WordPress post.
 
 # Example phpunit.xml
 
-In *examples/phpunit.example.xml* you can find an example of a PHPUnit configuration file with all the available options.
+In [examples/phpunit.example.xml](examples/phpunit.example.xml) you can find an example of a PHPUnit configuration file with all the available options.
 
 # Logging
 
