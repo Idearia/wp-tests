@@ -33,10 +33,7 @@ trait Loggable
 	 */
 	protected static function getLogFilePath(): string
 	{
-		return
-			dirname( __FILE__ )
-			. DIRECTORY_SEPARATOR
-			. ( $_ENV['logsPath'] ?? '../../../../tests/logs' )
+		return ( $_ENV['logsPath'] ?? 'tests/logs' )
 			. DIRECTORY_SEPARATOR
 			. (new \ReflectionClass( static::class ))->getShortName()
 			. '.log';

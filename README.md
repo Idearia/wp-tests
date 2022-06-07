@@ -39,7 +39,7 @@ To set `blogId` in *phpunit.xml*:
 # Custom WordPress path
 
 If your WordPress installation is non-standard, you can specify a custom WordPress path by setting the `wordPressPath` environment variable.
-If you use a relative path, please note that the reference folder will be *vendor/idearia/wp-tests*.
+You can use both relative and absolute paths.
 
 To set `wordPressPath` in *phpunit.xml*:
 
@@ -52,7 +52,7 @@ To set `wordPressPath` in *phpunit.xml*:
 # Custom folder for the logs
 
 By default, the log files will be placed in the *tests/logs* folder; set the `logsPath` environment variable to use a different folder.
-If you use a relative path, please note that the reference folder will be *vendor/idearia/wp-tests*.
+You can use both relative and absolute paths.
 
 To set `logsPath` in *phpunit.xml*:
 
@@ -81,5 +81,3 @@ To pass arguments to phpunit, use the notation `composer run test -- arguments`.
 # To do
 
 - Add logging to example class
-- Make logsPath relative to where phpunit.xml is
-- Make wordPressPath relative to where phpunit.xml is

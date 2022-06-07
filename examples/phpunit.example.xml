@@ -6,8 +6,11 @@
     </testsuite>
   </testsuites>
   <php>
-    <env name="wordPressPath" value="/path/to/wordpress/folder"/>
-    <env name="logsPath" value="/path/to/logs/folder"/>
-    <env name="blogId" value="20"/>
+    <!-- Where to find wp-load.php -->
+    <env name="wordPressPath" value="../../.."/>
+    <!-- Where to save log entries added with self::log()  -->
+    <env name="logsPath" value="tests/logs"/>
+    <!-- Run the test on this blog/site; used only for multisite installations. -->
+    <env name="blogId" value="1"/>
   </php>
 </phpunit>
