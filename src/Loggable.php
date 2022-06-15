@@ -5,11 +5,21 @@ namespace Idearia\WpTests;
  * Simple logger for PHPUnit tests.
  *
  * Features:
+ *
  * - Use self::log( $message ) to log a message to file. The file will
- *   be named after the test class and be placed in the logs subfolder.
- * - Choose a custom subfolder for the log files via the environment
- *   variable 'logsPath', or customize the full path overriding getLogFilePath().
- * - Choose a different output stream by ovverriding getLogStream().
+ *   be named after the test class, and be placed in the logs subfolder.
+ *
+ * - Choose a custom subfolder for the log files via the environment variable
+ *   'logsPath'.
+ * 
+ * - You can change the full path of the log file (including its name and
+ *   extension) by overriding the static method getLogFilePath().
+ *
+ * - For even more control, directly plug-in an output stream by overriding
+ *   the static method getLogStream().
+ *
+ * - To clean the log file before each run, simply delete it in the
+ *   constructor: unlink( self::getLogFilePath() );
  */
 trait Loggable
 {
@@ -61,7 +71,7 @@ trait Loggable
 	 */
 	protected static function maybeCreateDir(): bool
 	{
-		$dir = dirname( self::getLogFilePath() );
+		$dir = dirname( static::getLogFilePath() );
 
 		if ( ! file_exists( $dir ) ) {
 			return mkdir( $dir, 0744, true );
