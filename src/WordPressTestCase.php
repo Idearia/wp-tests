@@ -17,6 +17,15 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 	use Loggable;
 
 	/**
+	 * Details of the site on which the tests will be run
+	 * (multisite only).
+	 *
+	 * The site will be the one specified in the 'blogId' env
+	 * variable.
+	 */
+	protected static ?\WP_Site $site = null;
+
+	/**
 	 * Load WordPress before running the tests
 	 */
 	public static function setUpBeforeClass(): void
@@ -35,6 +44,11 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 		
 		// Load given site from the network
 		if ( $blogId && is_multisite() ) {
+			$site = \get_blog_details( $blogId );
+			if ( ! $site ) {
+				throw new \Exception( "Could not find site with blogId = {$blogId}" );
+			}
+			static::$site = $site;
 			switch_to_blog( $blogId );
 		}
 	}
