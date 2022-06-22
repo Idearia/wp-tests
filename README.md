@@ -23,8 +23,14 @@ In [examples/phpunit.example.xml](examples/phpunit.example.xml) you can find an 
 - The file will be named after the test class and placed in the subfolder *tests/logs*
 - Customize the subfolder with the `logsPath` environment variable (see below).
 - You can also customize the filename and, in general, the output stream: for these advanced uses, see the `Loggable` trait's documentation.
+- To delete the log files before each run:
+    ```php
+    if ( file_exists( self::getLogFilePath() ) ) {
+        unlink( self::getLogFilePath() );
+    }
+    ```
 
-The `Loggable` trait is already used by `WordPressTestCase`.
+Please note that the `Loggable` trait is already used by `WordPressTestCase`.
 
 # Multisite support
 
