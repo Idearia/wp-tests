@@ -1,4 +1,6 @@
-Defines the class `WordPressTestCase` to do PHPUnit tests in WordPress, with logging support.
+Defines the class `WordPressTestCase` to do PHPUnit tests in WordPress, and the trait `Loggable` to provide logging support.
+
+The `Loggable` trait can be used in vanilla PHP, without WordPress
 
 # Usage
 
@@ -14,14 +16,15 @@ In [examples/WordPressTest.php](examples/WordPressTest.php) you can find an exam
 
 In [examples/phpunit.example.xml](examples/phpunit.example.xml) you can find an example of a PHPUnit configuration file with all the available options.
 
-# Logging
+# Loggable trait
 
-The class `WordPressTestCase` implements a simple logging trait:
-
-- To log a messag to file, call `self::log( $message )`.
-- The file will be named after the test class and placed in the subfolder *tests/logs*.
+- Add logging capabilities to your class with `use Idearia\WpTests\Loggable`
+- To log a messag to file, call `self::log( $message )`
+- The file will be named after the test class and placed in the subfolder *tests/logs*
 - Customize the subfolder with the `logsPath` environment variable (see below).
 - You can also customize the filename and, in general, the output stream: for these advanced uses, see the `Loggable` trait's documentation.
+
+The `Loggable` trait is already used by `WordPressTestCase`.
 
 # Multisite support
 
