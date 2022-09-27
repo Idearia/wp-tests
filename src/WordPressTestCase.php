@@ -28,21 +28,29 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 
 	/**
 	 * Load WordPress before running the tests
+	 *
+	 * @throws \Exception in multisite if $_ENV['siteUrl'] does
+	 * not correspond to an existing site
 	 */
 	public static function setUpBeforeClass(): void
 	{
 		$wordPressPath = $_ENV['wordPressPath'] ?? '../../..';
-		static::loadWordPress( $wordPressPath, $_ENV['siteUrl'] );
+
+		static::loadWordPress( $wordPressPath, $_ENV['siteUrl'] ?? '' );
+
+		if ( is_multisite() && $_ENV['siteUrl'] ?? '' ) {
+			Helpers::throwIfSiteDoesNotExist( $_ENV['siteUrl'] );
+		}
 	}
 
 	/**
 	 * Helper function to load WordPress.
 	 *
 	 * @param string $siteUrl optional URL of the website to load, for
-	 * multisite installations. Also useful if your test relies on simulating
-	 * a web server.
+	 * multisite installations. Also useful if your tests rely on $_SERVER
+	 * variables.
 	 */
-	public static function loadWordPress( string $wordPressPath, string $siteUrl = '' )
+	public static function loadWordPress( string $wordPressPath, string $siteUrl = '' ): void
 	{
 		if ( $siteUrl ) {
 			// Pretend to run on a webserver, so that WordPress knows which

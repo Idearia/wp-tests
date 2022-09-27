@@ -34,4 +34,11 @@ class HelpersTest extends FrameworkTestCase
 		$this->assertEquals( 'inofficina.mylocal', $_SERVER['HTTP_HOST'] );
 		$this->assertEquals( '', $_SERVER['REQUEST_URI'] );
 	}
+
+	public function test__SetServerUrl__exception()
+	{
+		$this->expectException( Exception::class );
+
+		Helpers::setServerUrl( '/whatever' );
+	}
 }
