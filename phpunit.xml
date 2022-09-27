@@ -6,11 +6,5 @@
     </testsuite>
   </testsuites>
   <php>
-    <!-- Where to find wp-load.php -->
-    <env name="wordPressPath" value="../../.."/>
-    <!-- Where to save log entries added with self::log()  -->
-    <env name="logsPath" value="tests/logs"/>
-    <!-- Run the test on this site; used only for multisite installations. -->
-    <env name="siteUrl" value="multisite.com/a-site-of-the-network"/>
   </php>
 </phpunit>

@@ -9,8 +9,9 @@ namespace Idearia\WpTests;
  * 'wordPressPath' environment variable. If no value is set,
  * we will infer it.
  *
- * For multisite installations, you can optionally select a
- * specific site via the 'blogId' environment variable.
+ * MULTISITE: optionally select a site via the 'siteUrl'
+ * environment variable, like you would do with the WP
+ * CLI parameter '--url'.
  */
 class WordPressTestCase extends \PHPUnit\Framework\TestCase
 {
@@ -31,25 +32,25 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 	public static function setUpBeforeClass(): void
 	{
 		$wordPressPath = $_ENV['wordPressPath'] ?? '../../..';
-		static::loadWordPress( $wordPressPath, (int)$_ENV['blogId'] );
+		static::loadWordPress( $wordPressPath, $_ENV['siteUrl'] );
 	}
 
 	/**
 	 * Helper function to load WordPress.
+	 *
+	 * @param string $siteUrl optional URL of the website to load, for
+	 * multisite installations. Also useful if your test relies on simulating
+	 * a web server.
 	 */
-	public static function loadWordPress( string $wordPressPath, int $blogId = 0 )
+	public static function loadWordPress( string $wordPressPath, string $siteUrl = '' )
 	{
+		if ( $siteUrl ) {
+			// Pretend to run on a webserver, so that WordPress knows which
+			// site to load; see set_url method in WP CLI for details
+			Helpers::setServerUrl( $siteUrl );
+		}
+
 		// Load WordPress
 		require_once( $wordPressPath . DIRECTORY_SEPARATOR . 'wp-load.php' );
-		
-		// Load given site from the network
-		if ( $blogId && is_multisite() ) {
-			$site = \get_blog_details( $blogId );
-			if ( ! $site ) {
-				throw new \Exception( "Could not find site with blogId = {$blogId}" );
-			}
-			static::$site = $site;
-			switch_to_blog( $blogId );
-		}
 	}
 }

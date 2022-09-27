@@ -35,13 +35,13 @@ Please note that the `Loggable` trait is already used by `WordPressTestCase`.
 # Multisite support
 
 On a WordPress multisite network, the tests will be run on the main site/blog.
-You can choose to test against a different site/blog by setting the `blogId` environment variable.
+You can choose to test against a different site/blog by setting the `siteUrl` environment variable.
 
-To set `blogId` in *phpunit.xml*:
+To set `siteUrl` in *phpunit.xml*:
 
 ```xml
 <php>
-    <env name="blogId" value="20"/>
+    <env name="siteUrl" value="example.com/my-blog"/>
 </php>
 ```
 
