@@ -38,8 +38,8 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 
 		static::loadWordPress( $wordPressPath, $_ENV['siteUrl'] ?? '' );
 
-		if ( is_multisite() && $_ENV['siteUrl'] ?? '' ) {
-			Helpers::throwIfSiteDoesNotExist( $_ENV['siteUrl'] );
+		if ( is_multisite() ) {
+			Helpers::throwIfSiteDoesNotExist( $_ENV['siteUrl'] ?? '' );
 		}
 	}
 
