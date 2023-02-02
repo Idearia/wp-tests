@@ -22,3 +22,4 @@ pnpm-debug.log*
 #
 vendor
 .phpunit.result.cache
+tests/logs

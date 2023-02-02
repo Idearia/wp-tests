@@ -18,7 +18,8 @@ In [examples/phpunit.example.xml](examples/phpunit.example.xml) you can find an 
 
 # Loggable trait
 
-- Add logging capabilities to your class with `use Idearia\WpTests\Loggable`
+- Add logging capabilities to your test case with `use Idearia\WpTests\Loggable`
+- To log a message to screen, call `self::print( $message )`.
 - To log a messag to file, call `self::log( $message )`
 - The file will be named after the test class and placed in the subfolder *tests/logs*
 - Customize the subfolder with the `logsPath` environment variable (see below).

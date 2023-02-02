@@ -6,6 +6,8 @@ namespace Idearia\WpTests;
  *
  * Features:
  *
+ * - Use self::print( $message ) to print a message to console.
+ *
  * - Use self::log( $message ) to log a message to file. The file will
  *   be named after the test class, and be placed in the logs subfolder.
  *
@@ -24,11 +26,26 @@ namespace Idearia\WpTests;
 trait Loggable
 {
 	/**
-	 * Print a log message to file
+	 * Print a log message to console.
 	 */
-	protected static function log( $message ): void
+	protected static function print( $message ): void
 	{
-		$stream = static::getLogStream();
+		static::log( $message, STDERR );
+	}
+
+	/**
+	 * Print a log message to file.
+	 *
+	 * @param mixed $message
+	 * @param resource $stream optional stream to which the message will be
+	 * written. If not specified, the stream returned by getLogStream() will
+	 * be used.
+	 */
+	protected static function log( $message, $stream = null ): void
+	{
+		if ( ! $stream ) {
+			$stream = static::getLogStream();
+		}
 
 		if ( is_array( $message ) || is_object( $message ) ) {
 			fwrite( $stream, print_r( $message, true) );
@@ -78,5 +95,17 @@ trait Loggable
 		}
 
 		return true;
+	}
+
+	/**
+	 * Delete log file for the class
+	 */
+	protected static function deleteLogFile(): bool
+	{
+		if ( ! file_exists( static::getLogFilePath() ) ) {
+			return true;
+		}
+
+		return unlink( static::getLogFilePath() );
 	}
 }
