@@ -41,10 +41,6 @@ class Helpers
 	 */
 	public static function throwIfSiteDoesNotExist( string $siteUrl ): void
 	{
-		if ( ! $siteUrl ) {
-			throw new \Exception( 'You must export the siteUrl environment variable' );
-		}
-
 		if ( static::stripUrl( \get_site_url() ) !== static::stripUrl( $siteUrl ) ) {
 			throw new \Exception( "Given site not found: $siteUrl" );
 		}
@@ -53,6 +49,8 @@ class Helpers
 	/**
 	 * Remove the HTTP or HTTPS part from an URL and the
 	 * trailing slash
+	 *
+	 * @return string
 	 */
 	public static function stripUrl( string $url )
 	{

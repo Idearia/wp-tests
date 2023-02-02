@@ -20,6 +20,8 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 	/**
 	 * Whether to delete the log file before running each
 	 * test case.
+	 *
+	 * @var bool
 	 */
 	protected static $deleteLogFile = true;
 
@@ -27,10 +29,29 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 	 * Details of the site on which the tests will be run
 	 * (multisite only).
 	 *
-	 * The site will be the one specified in the 'blogId' env
-	 * variable.
+	 * By default this will be the main site, unless a specific
+	 * blog is given via the environment variable 'siteUrl'.
+	 *
+	 * @var \WP_Site
 	 */
 	protected static ?\WP_Site $site = null;
+
+	/**
+	 * Return the URL of the site on which the tests will be run
+	 * (multisite only).
+	 *
+	 * Override this function to change the default behavior (main
+	 * blog is used unless the env variale 'siteUrl' is set).
+	 *
+	 * If the function returns null or an empty string, the main site
+	 * will be used.
+	 *
+	 * @return string|null
+	 */
+	protected static function getSiteUrl()
+	{
+		return $_ENV['siteUrl'] ?? null;
+	}
 
 	/**
 	 * Load WordPress before running the tests
@@ -48,11 +69,17 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 		// Infer the path to WordPress
 		$wordPressPath = $_ENV['wordPressPath'] ?? '../../..';
 
-		// Load WordPress
-		static::loadWordPress( $wordPressPath, $_ENV['siteUrl'] ?? '' );
+		// Load WordPress files
+		$siteUrl = static::getSiteUrl();
+		static::loadWordPress( $wordPressPath, $siteUrl );
 
-		if ( is_multisite() ) {
-			Helpers::throwIfSiteDoesNotExist( $_ENV['siteUrl'] ?? '' );
+		// Case in which we are on a multisite installation
+		if ( \is_multisite() ) {
+			// If the user has specified a site, check it exists
+			if ( $siteUrl ) {
+				Helpers::throwIfSiteDoesNotExist( $siteUrl );
+			}
+			static::$site = \get_blog_details();
 		}
 	}
 
@@ -60,10 +87,9 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 	 * Helper function to load WordPress.
 	 *
 	 * @param string $siteUrl optional URL of the website to load, for
-	 * multisite installations. Also useful if your tests rely on $_SERVER
-	 * variables.
+	 * multisite installations. If not given, the main site will be loaded.
 	 */
-	public static function loadWordPress( string $wordPressPath, string $siteUrl = '' ): void
+	public static function loadWordPress( string $wordPressPath, ?string $siteUrl = null ): void
 	{
 		if ( $siteUrl ) {
 			// Pretend to run on a webserver, so that WordPress knows which

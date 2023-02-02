@@ -1,4 +1,4 @@
-Defines the simple class `WordPressTestCase` to run PHPUnit tests in a WordPress installation, with support for logging and multisite.
+Defines the class `WordPressTestCase` to run PHPUnit tests in a WordPress installation, with support for logging and multisite.
 
 # Usage
 
@@ -7,7 +7,7 @@ Defines the simple class `WordPressTestCase` to run PHPUnit tests in a WordPress
 1. When you run the test, WordPress will be automatically loaded.
 
 Have a look in the [the example folder](examples). You'll find:
-- an [example test](examples/WordPressTest.php) where we create, fetch and delete a WordPress post.
+- an [example test](examples/WordPressTest.php) that creates, fetches and deletes a WordPress post;
 - an [example phpunit.xml](examples/phpunit.example.xml) file with the available options.
 
 
@@ -23,16 +23,22 @@ Have a look in the [the example folder](examples). You'll find:
 
 # Multisite support
 
-On a WordPress multisite network, the tests will be run on the main site/blog.
-You can choose to test against a different site/blog by setting the `siteUrl` environment variable.
+By default, the tests will be run on the main blog.
 
-To set `siteUrl` in *phpunit.xml*:
-
+To run the tests on a different blog, add the `siteUrl` environment variable to your phpunit.xml file:
 ```xml
 <php>
-    <env name="siteUrl" value="example.com/my-blog"/>
+  <env name="siteUrl" value=""/>
 </php>
 ```
+
+Then, you are free to set `siteUrl` the way you see fit:
+- In a [dotenv file](https://github.com/vlucas/phpdotenv).
+- When you run phpunit: `siteUrl=http://example.com/blog phpunit`.
+- At the shell level: `export siteUrl=http://example.com/blog`.
+- In your test case setup: `putenv( 'siteUrl=http://example.com/blog' );`.
+- Hard-code it in phpunit.xml.
+
 
 # Custom WordPress path
 
