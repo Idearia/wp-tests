@@ -1,0 +1,18 @@
+{
+  "overrides": [
+    {
+      "files": "*.php",
+      "options": {
+        "printWidth": 88,
+        "singleQuote": true,
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": "phpstan.neon",
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
+}

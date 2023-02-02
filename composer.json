@@ -1,33 +1,40 @@
 {
-    "name": "idearia/wp-tests",
-    "description": "A simple class to run PHPUnit tests in WordPress.",
-    "keywords": ["tests", "WordPress", "phpunit"],
-    "type": "library",
-    "license": "GPL-3.0-or-later",
-    "homepage": "https://github.com/Idearia/wp-tests",
+  "name": "idearia/wp-tests",
+  "description": "A simple class to run PHPUnit tests in WordPress.",
+  "keywords": [
+    "tests",
+    "WordPress",
+    "phpunit"
+  ],
+  "type": "library",
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://github.com/Idearia/wp-tests",
+  "scripts": {
+    "test": [
+      "phpunit --testdox"
+    ],
     "scripts": {
-        "test": [
-            "phpunit --testdox"
-        ]
-    },
-    "autoload": {
-        "psr-4": {
-            "Idearia\\WpTests\\": "src/",
-            "Idearia\\WpTests\\Tests\\": "tests/"
-        }
-    },
-    "require": {
-        "coccoinomane/phpunit-log": "^1.0.3"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "szepeviktor/phpstan-wordpress": "^1.1",
-        "phpstan/extension-installer": "^1.1",
-        "coccoinomane/phpunit-log": "^1.0"
-    },
-    "config": {
-        "allow-plugins": {
-            "phpstan/extension-installer": true
-        }
+      "prettier": "prettier -w **/*.{php,json,js,css,scss,html,md}"
     }
+  },
+  "autoload": {
+    "psr-4": {
+      "Idearia\\WpTests\\": "src/",
+      "Idearia\\WpTests\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "coccoinomane/phpunit-log": "^1.0.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5",
+    "szepeviktor/phpstan-wordpress": "^1.1",
+    "phpstan/extension-installer": "^1.1",
+    "coccoinomane/phpunit-log": "^1.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "phpstan/extension-installer": true
+    }
+  }
 }

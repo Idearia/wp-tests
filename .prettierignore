@@ -1,0 +1,6 @@
+/bootstrap
+/node_modules
+/public
+/storage
+/vendor
+_ide_helper*.php

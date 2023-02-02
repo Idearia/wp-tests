@@ -7,9 +7,9 @@ Defines the class `WordPressTestCase` to run PHPUnit tests in a WordPress instal
 1. When you run the test, WordPress will be automatically loaded.
 
 Have a look in the [the example folder](examples). You'll find:
+
 - an [example test](examples/WordPressTest.php) that creates, fetches and deletes a WordPress post;
 - an [example phpunit.xml](examples/phpunit.example.xml) file with the available options.
-
 
 # Logging support
 
@@ -20,12 +20,12 @@ Have a look in the [the example folder](examples). You'll find:
 - Customize the log folder via the `logsPath` environment variable.
 - For further customizations, please refer to the documentation of the [Loggable trait](https://github.com/coccoinomane/phpunit-log).
 
-
 # Multisite support
 
 By default, the tests will be run on the main blog.
 
 To run the tests on a different blog, add the `siteUrl` environment variable to your phpunit.xml file:
+
 ```xml
 <php>
   <env name="siteUrl" value=""/>
@@ -33,23 +33,22 @@ To run the tests on a different blog, add the `siteUrl` environment variable to 
 ```
 
 Then, you are free to set `siteUrl` the way you see fit:
+
 - In a [dotenv file](https://github.com/vlucas/phpdotenv).
 - When you run phpunit: `siteUrl=http://example.com/blog phpunit`.
 - At the shell level: `export siteUrl=http://example.com/blog`.
 - In your test case setup: `putenv( 'siteUrl=http://example.com/blog' );`.
 - Hard-code it in phpunit.xml.
 
-
 # Custom WordPress path
 
 If your WordPress installation is non-standard, you can specify a custom WordPress path by setting the `wordPressPath` environment variable.
 You can use both relative and absolute paths.
 
-To set `wordPressPath` in *phpunit.xml*:
+To set `wordPressPath` in _phpunit.xml_:
 
 ```xml
 <php>
     <env name="wordPressPath" value="/path/to/wordpress/"/>
 </php>
 ```
-
