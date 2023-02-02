@@ -54,6 +54,12 @@ class Helpers
      */
     public static function stripUrl(string $url)
     {
-        return preg_replace('/(^(https|http):\/\/)|\/$/', '', trim($url));
+        $result = preg_replace('/(^(https|http):\/\/)|\/$/', '', trim($url));
+
+        if ($result === null) {
+            return $url;
+        }
+
+        return $result;
     }
 }

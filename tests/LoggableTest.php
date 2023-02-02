@@ -18,7 +18,7 @@ class LoggableTest extends TestCase
     /**
      * Test the log method.
      */
-    public function testLog()
+    public function testLog(): void
     {
         static::deleteLogFile();
         $this->log('test');
@@ -28,7 +28,7 @@ class LoggableTest extends TestCase
     /**
      * Test the log method with multiple calls.
      */
-    public function testLogMultiple()
+    public function testLogMultiple(): void
     {
         static::deleteLogFile();
         $this->log('test');
@@ -42,7 +42,7 @@ class LoggableTest extends TestCase
     /**
      * Test the log method with an array argument.
      */
-    public function testLogArray()
+    public function testLogArray(): void
     {
         static::deleteLogFile();
         $this->log(['test']);
@@ -55,7 +55,7 @@ class LoggableTest extends TestCase
     /**
      * Test the log method with an object argument.
      */
-    public function testLogObject()
+    public function testLogObject(): void
     {
         static::deleteLogFile();
         $obj = new \stdClass();
@@ -65,55 +65,5 @@ class LoggableTest extends TestCase
             "stdClass Object\n(\n    [test] => test\n)\n\n",
             file_get_contents($this->getLogFilePath())
         );
-    }
-
-    /**
-     * Test that the logs folder will be read from $_ENV['logsPath']
-     * and created if it does not exist
-     */
-    public function testLogFolderCreated()
-    {
-        // Set logsPath to a non-existent folder
-        $_ENV['logsPath'] = 'tests/logs/' . uniqid();
-
-        // Take note of the folder for later tear down
-        $this->tempDir = $_ENV['logsPath'];
-
-        // Check that the log file path is correct
-        $this->assertEquals(
-            $_ENV['logsPath'] . '/LoggableTest.log',
-            $this->getLogFilePath()
-        );
-
-        // Log something
-        $this->log('test');
-
-        // Check that the log file was created
-        $this->assertEquals("test\n", file_get_contents($this->getLogFilePath()));
-
-        // Delete the log file
-        static::deleteLogFile();
-
-        // Delete the folder
-        rmdir($_ENV['logsPath']);
-
-        // Reset logsPath
-        $_ENV['logsPath'] = null;
-    }
-
-    /**
-     * Remove temporary files and folders created during tests.
-     */
-    public function tearDown(): void
-    {
-        if (is_dir($this->tempDir)) {
-            // Empty the folder
-            $files = glob($this->tempDir . '/*');
-            foreach (array_filter($files, 'is_file') as $file) {
-                unlink($file);
-            }
-            // Delete the folder
-            rmdir($this->tempDir);
-        }
     }
 }

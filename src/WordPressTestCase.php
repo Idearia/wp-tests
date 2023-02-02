@@ -79,7 +79,11 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
             if ($siteUrl) {
                 Helpers::throwIfSiteDoesNotExist($siteUrl);
             }
-            static::$site = \get_blog_details();
+            $blog_details = \get_blog_details();
+            if ($blog_details === false) {
+                throw new \Exception('Could not get blog details');
+            }
+            static::$site = $blog_details;
         }
     }
 

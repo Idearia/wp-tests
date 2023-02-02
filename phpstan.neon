@@ -1,6 +1,6 @@
 # Make sure to use https://github.com/szepeviktor/phpstan-wordpress
 parameters:
-  level: 5
+  level: 8
   paths:
     - src
     - tests

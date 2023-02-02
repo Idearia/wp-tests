@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase as FrameworkTestCase;
 
 class HelpersTest extends FrameworkTestCase
 {
-    public function testSetServerUrl()
+    public function testSetServerUrl(): void
     {
         global $_SERVER;
 
@@ -35,7 +35,7 @@ class HelpersTest extends FrameworkTestCase
         $this->assertEquals('', $_SERVER['REQUEST_URI']);
     }
 
-    public function testSetServerUrlException()
+    public function testSetServerUrlException(): void
     {
         $this->expectException(Exception::class);
 
