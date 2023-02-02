@@ -18,6 +18,12 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 	use Loggable;
 
 	/**
+	 * Whether to delete the log file before running each
+	 * test case.
+	 */
+	protected static $deleteLogFile = true;
+
+	/**
 	 * Details of the site on which the tests will be run
 	 * (multisite only).
 	 *
@@ -34,8 +40,15 @@ class WordPressTestCase extends \PHPUnit\Framework\TestCase
 	 */
 	public static function setUpBeforeClass(): void
 	{
+		// Delete the log file of the test case, if requested
+		if ( static::$deleteLogFile ) {
+			static::deleteLogFile();
+		}
+
+		// Infer the path to WordPress
 		$wordPressPath = $_ENV['wordPressPath'] ?? '../../..';
 
+		// Load WordPress
 		static::loadWordPress( $wordPressPath, $_ENV['siteUrl'] ?? '' );
 
 		if ( is_multisite() ) {

@@ -12,7 +12,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Idearia\\WpTests\\": "src/"
+            "Idearia\\WpTests\\": "src/",
+            "Idearia\\WpTests\\Tests\\": "tests/"
         }
     },
     "require-dev": {

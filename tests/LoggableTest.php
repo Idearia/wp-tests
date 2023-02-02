@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
  */
 class LoggableTest extends TestCase
 {
-    use PHPUnitLog\Loggable;
+    use \Idearia\WpTests\Loggable;
 
     /**
      * @var string
