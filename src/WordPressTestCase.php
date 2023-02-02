@@ -15,7 +15,7 @@ namespace Idearia\WpTests;
  */
 class WordPressTestCase extends \PHPUnit\Framework\TestCase
 {
-	use Loggable;
+	use \PHPUnitLog\Loggable;
 
 	/**
 	 * Whether to delete the log file before running each

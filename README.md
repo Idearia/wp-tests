@@ -1,37 +1,25 @@
-Defines the class `WordPressTestCase` to do PHPUnit tests in WordPress, and the trait `Loggable` to provide logging support.
-
-The `Loggable` trait can be used in vanilla PHP, without WordPress
+Defines the simple class `WordPressTestCase` to run PHPUnit tests in a WordPress installation, with support for logging and multisite.
 
 # Usage
 
-1. Install the package with `composer require idearia/wp-tests --dev`.
-1. Create a test by extending `Idearia\WpTests\WordPressTestCase`.
-1. Launch `vendor/bin/phpunit` to run your tests.
+1. Install with `composer require idearia/wp-tests --dev`.
+1. Create a test case by extending `Idearia\WpTests\WordPressTestCase`.
+1. When you run the test, WordPress will be automatically loaded.
 
-# Example class
+Have a look in the [the example folder](examples). You'll find:
+- an [example test](examples/WordPressTest.php) where we create, fetch and delete a WordPress post.
+- an [example phpunit.xml](examples/phpunit.example.xml) file with the available options.
 
-In [examples/WordPressTest.php](examples/WordPressTest.php) you can find an example of a test which implements `WordPressTestCase`. In this test, we create, fetch and delete a WordPress post.
 
-# Example phpunit.xml
+# Logging support
 
-In [examples/phpunit.example.xml](examples/phpunit.example.xml) you can find an example of a PHPUnit configuration file with all the available options.
-
-# Loggable trait
-
-- Add logging capabilities to your test case with `use Idearia\WpTests\Loggable`
 - To log a message to screen, call `self::print( $message )`.
-- To log a messag to file, call `self::log( $message )`
-- The file will be named after the test class and placed in the subfolder *tests/logs*
-- Customize the subfolder with the `logsPath` environment variable (see below).
-- You can also customize the filename and, in general, the output stream: for these advanced uses, see the `Loggable` trait's documentation.
-- To delete the log files before each run:
-    ```php
-    if ( file_exists( self::getLogFilePath() ) ) {
-        unlink( self::getLogFilePath() );
-    }
-    ```
+- To log a message to file, call `self::log( $message )`.
+- The file will be named after the test class and placed in the subfolder _tests/logs_.
+- The log file will reset at each run unless you set `protected static $deleteLogFile = false;` in your test case.
+- Customize the log folder via the `logsPath` environment variable.
+- For further customizations, please refer to the documentation of the [Loggable trait](https://github.com/coccoinomane/phpunit-log).
 
-Please note that the `Loggable` trait is already used by `WordPressTestCase`.
 
 # Multisite support
 
@@ -59,35 +47,3 @@ To set `wordPressPath` in *phpunit.xml*:
 </php>
 ```
 
-# Custom folder for the logs
-
-By default, the log files will be placed in the *tests/logs* folder; set the `logsPath` environment variable to use a different folder.
-You can use both relative and absolute paths.
-
-To set `logsPath` in *phpunit.xml*:
-
-```xml
-<php>
-    <env name="logsPath" value="./tests/logs"/>
-</php>
-```
-
-# Nice output
-
-Run `vendor/bin/phpunit --testdox` to print test results in a nicer way.
-
-Equivalently, you coud add this snippet to composer.json and simply run `composer run test`:
-
-```json
-"scripts": {
-    "test": [
-        "phpunit --testdox"
-    ]
-}
-```
-
-To pass arguments to phpunit, use the notation `composer run test -- arguments`.
-
-# To do
-
-- Add logging to example class

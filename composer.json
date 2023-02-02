@@ -1,6 +1,6 @@
 {
     "name": "idearia/wp-tests",
-    "description": "A simple class to do PHPUnit tests in WordPress.",
+    "description": "A simple class to run PHPUnit tests in WordPress.",
     "keywords": ["tests", "WordPress", "phpunit"],
     "type": "library",
     "license": "GPL-3.0-or-later",
@@ -16,10 +16,14 @@
             "Idearia\\WpTests\\Tests\\": "tests/"
         }
     },
+    "require": {
+        "coccoinomane/phpunit-log": "^1.0.3"
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
         "szepeviktor/phpstan-wordpress": "^1.1",
-        "phpstan/extension-installer": "^1.1"
+        "phpstan/extension-installer": "^1.1",
+        "coccoinomane/phpunit-log": "^1.0"
     },
     "config": {
         "allow-plugins": {

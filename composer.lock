@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ccbaad56facaee32595a59eb166bedfa",
-    "packages": [],
+    "content-hash": "e2f7303d020f3d5b6cfd9ee24d2386b7",
+    "packages": [
+        {
+            "name": "coccoinomane/phpunit-log",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coccoinomane/phpunit-log.git",
+                "reference": "952ea19fd7e2d8dfc881972723fb85b4e034b1ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coccoinomane/phpunit-log/zipball/952ea19fd7e2d8dfc881972723fb85b4e034b1ff",
+                "reference": "952ea19fd7e2d8dfc881972723fb85b4e034b1ff",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpstan/extension-installer": "^1.1",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPUnitLog\\": "src/",
+                    "PHPUnitLog\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "Log from within your PHPUnit tests.",
+            "homepage": "https://github.com/coccoinomane/phpunit-log",
+            "keywords": [
+                "php",
+                "phpunit",
+                "tests",
+                "trait"
+            ],
+            "support": {
+                "issues": "https://github.com/coccoinomane/phpunit-log/issues",
+                "source": "https://github.com/coccoinomane/phpunit-log/tree/1.0.3"
+            },
+            "time": "2023-02-02T10:17:34+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
